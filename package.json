@@ -1,6 +1,6 @@
 {
   "name": "umi-plugin-hire",
-  "version": "0.0.0",
+  "version": "1.0.3",
   "description": "A umi plugin for insert a side tip for hire",
   "main": "lib/index.js",
   "scripts": {
