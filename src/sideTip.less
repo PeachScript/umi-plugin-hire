@@ -1,0 +1,209 @@
+.plugin-hire-side-tip {
+  position: fixed;
+  z-index: 100;
+  max-width: 80%;
+  bottom: 40px;
+  right: 40px;
+
+  .plugin-hire-side-tip-btn {
+    position: absolute;
+    z-index: 1;
+    right: -10px;
+    bottom: -10px;
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    line-height: 60px;
+    color: #fff;
+    font-size: 18px;
+    background-image: radial-gradient(circle at 16% 16%, #B5D5FF 14%, #6861D8 100%);
+    border-radius: 50%;
+    border: 0;
+    opacity: 0.5;
+    cursor: pointer;
+    transition: opacity 0.2s;
+
+    &::after {
+      content: 'HIRE';
+    }
+
+    &:hover {
+      opacity: 1;
+      animation: plugin-hire-scale 0.3s alternate infinite;
+
+      + .plugin-hire-side-tip-btn-close {
+        opacity: 1;
+        visibility: visible;
+        transition-delay: 0s;
+      }
+    }
+  }
+
+  .plugin-hire-side-tip-btn-close {
+    position: absolute;
+    right: -20px;
+    bottom: 40px;
+    display: block;
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    line-height: 18px;
+    background: #e3e3e3;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s 0.3s;
+    transition-delay: 0.3s;
+
+    &:not(:hover) {
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 10px;
+      height: 2px;
+      background: #fff;
+      vertical-align: 0.2em;
+    }
+  }
+
+  .plugin-hire-side-tip-content {
+    padding: 8px 24px;
+    min-width: 0;
+    max-height: 40px;
+    color: #4B5877;
+    font-size: 15px;
+    background: #FFFFFF;
+    box-shadow: 2px 4px 14px 0 rgba(0,0,0,0.07);
+    border-radius: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: all ease-in-out 0.3s 0.3s;
+
+    > article {
+      padding: 20px 0 30px;
+      max-width: 0;
+      visibility: hidden;
+      opacity: 0;
+      transition: all ease-in-out 0.3s 0s, max-width ease-in-out 0.3s 0.3s;
+
+      h3 {
+        margin: 0 0 16px;
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      p {
+        margin: 4px 0;
+        line-height: 1.4125;
+      }
+
+      ul {
+        list-style: inside;
+        margin: 4px 16px 32px;
+        padding: 0;
+        line-height: 1.4125;
+      }
+
+      > a[href^=mailto] {
+        margin: 0 auto;
+        display: block;
+        width: 130px;
+        height: 40px;
+        color: #fff;
+        line-height: 40px;
+        text-align: center;
+        text-decoration: none;
+        background-image: radial-gradient(circle at 16% 16%, #B5D5FF 2%, #6861D8 100%);
+        border-radius: 20px;
+
+        &:hover {
+          animation: plugin-hire-scale 0.3s alternate infinite;
+        }
+      }
+    }
+  }
+
+  &.initial {
+    .plugin-hire-side-tip-content {
+      opacity: 0.9;
+      visibility: visible;
+
+      &::before {
+        content: attr(data-slogan);
+        padding-right: 40px;
+      }
+    }
+
+    .plugin-hire-side-tip-btn {
+      opacity: 1;
+      animation: plugin-hire-scale 0.3s alternate infinite;
+
+      &::after {
+        content: 'YES!';
+      }
+    }
+  }
+
+  &.active {
+    .plugin-hire-side-tip-content {
+      min-width: 300px;
+      max-width: 100%;
+      max-height: 1000px;
+      transition-delay: 0s;
+      opacity: 1;
+      visibility: visible;
+
+      &::before {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      > article {
+        max-width: 300px;
+        visibility: visible;
+        opacity: 1;
+        transition: all ease-in-out 0.3s 0.3s, max-width ease-in-out 0.3s;
+      }
+    }
+
+    .plugin-hire-side-tip-btn {
+      opacity: 1;
+      background-image: radial-gradient(circle at 16% 16%, #EFECEC 14%, #BCBBD4 100%);
+
+      &::after {
+        content: '';
+        display: inline-block;
+        width: 20px;
+        height: 2px;
+        background-color: #fff;
+        vertical-align: middle;
+      }
+
+      &:hover {
+        animation: none;
+
+        + .plugin-hire-side-tip-btn-close {
+          opacity: 0;
+          visibility: hidden;
+        }
+      }
+    }
+  }
+}
+
+
+@keyframes plugin-hire-scale {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
