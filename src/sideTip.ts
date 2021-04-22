@@ -86,4 +86,9 @@ class SideTip {
   }
 }
 
-export default (opts: sideTipOpts) => new SideTip(opts);
+export default (opts: sideTipOpts) => {
+  if (window === window?.top) {
+    // only apply in top window
+    return new SideTip(opts);
+  }
+};
